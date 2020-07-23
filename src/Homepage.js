@@ -10,11 +10,21 @@ class Homepage extends React.Component{
     super(props);
     this.state = {
       cards52:
-        { suit: "club" , number: "5" }
+        { suit: "spade" , number: "5" }
     };
   }
+  
+  changeSuit = () => {
+    this.setState({
+      cards52: {
+        suit: "club",
+        number: this.state.cards52.number
+      }
+    });
+  }
+
   render(){
-    var suitpic = club
+    let suitpic = club
     if(this.state.cards52.suit === "club"){
       suitpic = club
     } else if (this.state.cards52.suit === "diamond"){
@@ -24,11 +34,15 @@ class Homepage extends React.Component{
     } else {
       suitpic = spade
     }
+    
     return(
       <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
-        <img src= {suitpic} alt="suit" width="40px" height="80px"/>
+        <img src = {suitpic} alt="suit" width="40px" height="80px"/>
         {this.state.cards52.number}
+        <br/><br/><br/><br/><br/><br/>
+        <button id="suitButton" name="club" onClick={this.changeSuit}>Clubs</button>
       </div>
+      
     );
   }
 }
