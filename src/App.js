@@ -1,22 +1,21 @@
 import React from 'react';
+import Homepage from './Homepage';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      cards52: [
-        { suit: 'clubs' },
-        { number: "5" }
-      ]
-    };
-  }
-
   render() {
     return (
-      <div>
-        Cardz yo:
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path = "/">
+            <Homepage/>
+          </Route>
+          <Route>
+            <div>Page not found! Succotash</div>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
