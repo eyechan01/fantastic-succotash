@@ -3,6 +3,7 @@ import club from './club.jpg';
 import diamond from './diamond.jpg';
 import heart from './heart.jpg';
 import spade from './spade.jpg';
+import { Link } from 'react-router-dom';
 
 class Blackjack extends React.Component{
 
@@ -62,6 +63,8 @@ class Blackjack extends React.Component{
             <button onClick={this.randomCard}>Generate Random Card!</button>
             <br/>
             <button onClick={this.deal}>Play!</button>
+            <br/><br/>
+            <Link to="/">Go home!</Link>
         </div>
       
     );

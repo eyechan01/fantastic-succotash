@@ -5,7 +5,7 @@ import heart from './heart.jpg';
 import spade from './spade.jpg';
 import { Link } from 'react-router-dom';
 
-class Homepage extends React.Component{
+class Poker extends React.Component{
 
   constructor(props) {
     super(props);
@@ -13,15 +13,6 @@ class Homepage extends React.Component{
       cards52:
         { suit: "spade" , number: "5" }
     };
-  }
-  
-  changeSuit = () => {
-    this.setState({
-      cards52: {
-        suit: "club",
-        number: this.state.cards52.number
-      }
-    });
   }
 
   render(){
@@ -38,23 +29,16 @@ class Homepage extends React.Component{
     
     return(
       <div>
-        <div>
-          <Link to="/blackjack">1. Blackjack</Link> <br/>
-          <Link to="/poker">2. Poker</Link> <br/>
-          <Link to="/TarunQuiz">3. Tarun Quiz</Link> <br/>
-          <Link to="/taboo">4. Taboo</Link> <br/>
-          <Link to="/set">5. Set</Link> <br/>
-        </div>
-        <br/>
+        Poker
         <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
           <img src = {suitpic} alt="suit" width="40px" height="80px"/>
           {this.state.cards52.number}
         </div>
-        <br/><br/><br/><br/><br/><br/>
-        <button id="suitButton" name="club" onClick={this.changeSuit}>Clubz for no reason</button>
+        <br/><br/>
+        <Link to="/">Go home!</Link>
       </div>
     );
   }
 }
 
-export default Homepage;
+export default Poker;
