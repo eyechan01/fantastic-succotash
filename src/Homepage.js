@@ -3,6 +3,7 @@ import club from './club.jpg';
 import diamond from './diamond.jpg';
 import heart from './heart.jpg';
 import spade from './spade.jpg';
+import { Link } from 'react-router-dom';
 
 class Homepage extends React.Component{
 
@@ -36,13 +37,18 @@ class Homepage extends React.Component{
     }
     
     return(
-      <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
-        <img src = {suitpic} alt="suit" width="40px" height="80px"/>
-        {this.state.cards52.number}
+      <div>
+        <div>
+          <Link to="/blackjack">1. Blackjack</Link>
+        </div>
+        <br/>
+        <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
+          <img src = {suitpic} alt="suit" width="40px" height="80px"/>
+          {this.state.cards52.number}
+        </div>
         <br/><br/><br/><br/><br/><br/>
         <button id="suitButton" name="club" onClick={this.changeSuit}>Clubs</button>
       </div>
-      
     );
   }
 }
