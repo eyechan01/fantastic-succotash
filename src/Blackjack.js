@@ -5,6 +5,24 @@ import heart from './heart.jpg';
 import spade from './spade.jpg';
 import { Link } from 'react-router-dom';
 
+function Card (props){
+  let suitpic = club
+    if(props.suit === "club"){
+      suitpic = club
+    } else if (props.suit === "diamond"){
+      suitpic = diamond
+    } else if (props.suit === "heart"){
+      suitpic = heart
+    } else {
+      suitpic = spade
+    }
+  return (
+      <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
+          <img src = {suitpic} alt="suit" width="40px" height="80px"/>
+          {props.number}
+      </div>
+  );}
+
 class Blackjack extends React.Component{
 
   constructor(props) {
@@ -12,19 +30,8 @@ class Blackjack extends React.Component{
     this.state = {
         suits: ["club", 'diamond', "heart", "spade"],
         values: [2,3,4,5,6,7,8,9,10,"J","Q","K","A"],
-        suit: 'club',
-        number: 'A',
-        deck: [],
+        deck: [{suit: 'club', number: '5'}],
     };
-  }
-  
-  randomCard = () => {
-    let randomSuit = Math.floor(Math.random() * 4);
-    let randomValue = Math.floor(Math.random() * 13);
-    this.setState({
-        suit: this.state.suits[randomSuit],
-        number: this.state.values[randomValue],
-    });
   }
 
   deal = () => {
@@ -34,39 +41,32 @@ class Blackjack extends React.Component{
         suit: this.state.suits[randomSuit],
         number: this.state.values[randomValue],
     }
-    this.state.deck.push(card)
+    const deck = this.state.deck.slice().concat(card)
+    this.setState({deck})
     console.log(this.state.deck)
   }
 
   render(){
-    let suitpic = club
-    if(this.state.suit === "club"){
-      suitpic = club
-    } else if (this.state.suit === "diamond"){
-      suitpic = diamond
-    } else if (this.state.suit === "heart"){
-      suitpic = heart
-    } else {
-      suitpic = spade
+    const deck = this.state.deck.map((card, index) =>
+    {
+      return (
+        <div key = {index}>
+          <Card suit = {card.suit} number = {card.number}/>
+        </div>
+      );
     }
-    
+  )
     return(
         <div>
-            <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
-                <img src = {suitpic} alt="suit" width="40px" height="80px"/>
-                {this.state.number}
-            </div>
-            <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
-                <img src = {suitpic} alt="suit" width="40px" height="80px"/>
-                {this.state.number}
-            </div>
-            <button onClick={this.randomCard}>Generate Random Card!</button>
+          <div>
+            {deck}
+          </div>
             <br/>
             <button onClick={this.deal}>Play!</button>
             <br/><br/>
             <Link to="/">Go home!</Link>
         </div>
-      
+
     );
   }
 }
