@@ -30,7 +30,8 @@ class Blackjack extends React.Component{
     this.state = {
         suits: ["club", 'diamond', "heart", "spade"],
         values: [2,3,4,5,6,7,8,9,10,"J","Q","K","A"],
-        deck: [{suit: 'club', number: '5'}],
+        deck: [],
+        score: 0,
     };
   }
 
@@ -43,7 +44,17 @@ class Blackjack extends React.Component{
     }
     const deck = this.state.deck.slice().concat(card)
     this.setState({deck})
-    console.log(this.state.deck)
+
+    typeof(card.number) === "number" ?
+      this.setState({score: this.state.score + card.number}) :
+      (
+        card.number === "A" ?
+        this.setState({score: this.state.score + 1}) : this.setState({score: this.state.score + 10})
+      )
+  }
+
+  reset = () => {
+    this.setState({deck: [], score: 0})
   }
 
   render(){
@@ -56,13 +67,23 @@ class Blackjack extends React.Component{
       );
     }
   )
+
+  let score = this.state.score
+  if(score == 21) {
+    score = "Blackjack!"
+  }
+  if(score > 21) {
+    score = "You Lose!"
+  }
+
     return(
         <div>
-          <div>
             {deck}
-          </div>
             <br/>
-            <button onClick={this.deal}>Play!</button>
+            <button onClick={this.deal}>Hit!</button>
+            <button onClick={this.reset}>Start over!</button>
+            <br/>
+            Score: {score}
             <br/><br/>
             <Link to="/">Go home!</Link>
         </div>
