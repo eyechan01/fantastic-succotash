@@ -4,6 +4,7 @@ import diamond from './diamond.jpg';
 import heart from './heart.jpg';
 import spade from './spade.jpg';
 import { Link } from 'react-router-dom';
+import ClassicCards from './Card.css';
 
 function Card (props){
   let suitpic = club
@@ -17,10 +18,10 @@ function Card (props){
       suitpic = spade
     }
   return (
-      <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
+      <span className={ClassicCards}>
           <img src = {suitpic} alt="suit" width="40px" height="80px"/>
           {props.number}
-      </div>
+      </span>
   );}
 
 class Blackjack extends React.Component{
@@ -61,9 +62,9 @@ class Blackjack extends React.Component{
     const deck = this.state.deck.map((card, index) =>
     {
       return (
-        <div key = {index}>
+        <span key = {index}>
           <Card suit = {card.suit} number = {card.number}/>
-        </div>
+        </span>
       );
     }
   )
