@@ -1,8 +1,5 @@
 import React from 'react';
-import club from './club.jpg';
-import diamond from './diamond.jpg';
-import heart from './heart.jpg';
-import spade from './spade.jpg';
+import {CardTarun} from './Card.js';
 import { Link } from 'react-router-dom';
 
 class TarunQuiz extends React.Component{
@@ -10,30 +7,20 @@ class TarunQuiz extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      cards52:
-        { suit: "spade" , number: "5" }
+      cardsTarun: { question: "Super difficult question" , answer: "Answer: Wikipedia" },
+      front: true
     };
   }
 
+  switchSide = () => this.setState({front: !this.state.front});
+
   render(){
-    let suitpic = club
-    if(this.state.cards52.suit === "club"){
-      suitpic = club
-    } else if (this.state.cards52.suit === "diamond"){
-      suitpic = diamond
-    } else if (this.state.cards52.suit === "heart"){
-      suitpic = heart
-    } else {
-      suitpic = spade
-    }
-    
+    const side = this.state.front ? this.state.cardsTarun.question : this.state.cardsTarun.answer
     return(
       <div>
       TarunQuiz
-        <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
-          <img src = {suitpic} alt="suit" width="40px" height="80px"/>
-          {this.state.cards52.number}
-        </div>
+      <br/>
+        <CardTarun text = {side} customClickEvent = {this.switchSide}/>
         <br/><br/>
         <Link to="/">Go home!</Link>
       </div>

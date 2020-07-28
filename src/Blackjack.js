@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import {Card} from './Card';
 import club from './club.jpg';
 import diamond from './diamond.jpg';
 import heart from './heart.jpg';
@@ -61,7 +61,7 @@ class Blackjack extends React.Component{
         </span>
       );
     })
-  
+
     const CPU = this.state.CPU.map((card, index) => {
       return (
         <span key = {index}>
