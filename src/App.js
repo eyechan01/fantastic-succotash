@@ -6,6 +6,8 @@ import TarunQuiz from './TarunQuiz';
 import Taboo from './Taboo';
 import Set from './Set';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends React.Component {
 

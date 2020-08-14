@@ -5,6 +5,7 @@ import diamond from './diamond.jpg';
 import heart from './heart.jpg';
 import spade from './spade.jpg';
 import { Link } from 'react-router-dom';
+import { Button, Alert, Jumbotron } from 'react-bootstrap';
 
 class Blackjack extends React.Component{
 
@@ -91,43 +92,54 @@ class Blackjack extends React.Component{
       );
     })
 
-    let message;
+    let message, type;
+    type = ''
     if(this.state.score > this.state.CPUscore) {
       message = "You Win!"
+      type = "success"
     }
     if(this.state.score === this.state.CPUscore) {
       message = "You Tie!"
+      type = "warning"
     }
     if(this.state.CPUscore === 0) {
       message = ""
+      type = ""
     }
     if(this.state.score === 21) {
       message = "Blackjack!"
+      type = "success"
     }
     if(this.state.score > 21 || this.state.score < this.state.CPUscore) {
       message = "You Lose!"
+      type = "danger"
     }
 
     return(
         <div>
-            <h1>BLACKJACK FOR THE BOYS AND THE GIRLS</h1>
+        <Jumbotron>
+          <h1>Blackjack (FOR THE BOYS AND THE GIRLS)</h1>
+          <p>
+            Blackjack is a super fun classic game you can play by yourself.
+          </p>
+          <Button variant="light"><Link to="/">Return home!</Link></Button>
+        </Jumbotron>
             {deck}
-            <br/><br/><br/><br/>
-            <div>
-              <button disabled={this.state.hitDisable} onClick={this.deal}>Hit!</button>
-              <button onClick={this.reset}>Start over!</button>
-              <button disabled={this.state.cpuDisable} onClick={()=>{ this.playCPU(); this.playCPU(); }}>Play CPU!</button>
+            <br/><br/>
+            <div> &nbsp;
+              <Button variant="primary" disabled={this.state.hitDisable} onClick={this.deal}>Hit!</Button>{' '}
+              <Button variant="danger" onClick={this.reset}>Start over!</Button>{' '}
+              <Button variant="info" disabled={this.state.cpuDisable} onClick={()=>{ this.playCPU(); this.playCPU(); }}>Play CPU!</Button>
               <br/>
-              Score: {this.state.score}
+              &nbsp; Score: {this.state.score}
               <br/>
-              <Link to="/">Go home!</Link>
             </div>
             <br/>
             {CPU}
-            <br/><br/><br/><br/><br/><br/><br/>
-            CPU score: {this.state.CPUscore}
+            <br/><br/>
+            &nbsp; CPU score: {this.state.CPUscore}
             <br/>
-            <h1 style={{color: "red"}}>{message}</h1>
+            <Alert variant={type}>{message}</Alert>
         </div>
 
     );

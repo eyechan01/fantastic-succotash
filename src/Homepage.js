@@ -4,6 +4,7 @@ import diamond from './diamond.jpg';
 import heart from './heart.jpg';
 import spade from './spade.jpg';
 import { Link } from 'react-router-dom';
+import { Jumbotron, Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap';
 
 class Homepage extends React.Component{
 
@@ -39,11 +40,29 @@ class Homepage extends React.Component{
     return(
       <div>
         <div>
-          <Link to="/blackjack">1. Blackjack</Link> <br/>
-          <Link to="/poker">2. Poker</Link> <br/>
-          <Link to="/TarunQuiz">3. Tarun Quiz</Link> <br/>
-          <Link to="/taboo">4. Taboo</Link> <br/>
-          <Link to="/set">5. Set</Link> <br/>
+
+        <Jumbotron>
+          <h1>Welcome to the Quarantine Games.</h1>
+          <p>
+            These are the bored games reimagined with a modern perspective.
+          </p>
+        </Jumbotron>
+
+<Navbar bg="light" expand="lg">
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <NavDropdown title="Card Games" id="basic-nav-dropdown">
+        <NavDropdown.Item><Link to="/blackjack" class="nav-link active">1. Blackjack</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/poker" class="nav-link active">2. Poker</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/TarunQuiz" class="nav-link active">3. Tarun Quiz</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/taboo" class="nav-link active">4. Taboo</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/set" class="nav-link active">5. Set</Link></NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+
         </div>
         <br/>
         <div style = {{height: "100px", width: "50px", padding: "50px", border: "1px solid black"}}>
