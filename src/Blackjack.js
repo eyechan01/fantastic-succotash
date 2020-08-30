@@ -14,6 +14,7 @@ class Blackjack extends React.Component{
     this.state = {
         suits: [club, diamond, heart, spade],
         values: ["A",2,3,4,5,6,7,8,9,10,"J","Q","K"],
+        cardsDealt: [],
         deck: [],
         CPU: [],
         score: 0,
@@ -25,28 +26,47 @@ class Blackjack extends React.Component{
 
   deal = () => {
     let random = Math.floor(Math.random() * 52);
+    while(this.state.cardsDealt.includes(random)) {
+      random = Math.floor(Math.random() * 52);
+    }
+    const cardsDealt = this.state.cardsDealt.slice().concat(random)
+    this.setState({cardsDealt})
     let card = {
         suit: this.state.suits[random % 4],
         number: this.state.values[random % 13],
     }
     const deck = this.state.deck.slice().concat(card)
     this.setState({deck, cpuDisable: false})
+    let addScore = 0;
 
     if(random % 13 < 9) {
-      this.setState({score: this.state.score + random % 13 + 1})
+      addScore = random % 13 + 1
     }
     else {
-      this.setState({score: this.state.score + 10})
+      addScore = 10
     }
 
-    if(this.state.score > 21) {
+    this.setState({score: this.state.score + addScore})
+
+    if(this.state.score + addScore > 21) {
       this.setState({hitDisable: true})
     }
   }
 
   playCPU = () => {
     let random1 = Math.floor(Math.random() * 52);
+    while(this.state.cardsDealt.includes(random1)) {
+      random1 = Math.floor(Math.random() * 52);
+    }
+
     let random2 = Math.floor(Math.random() * 52);
+    while(this.state.cardsDealt.includes(random2)) {
+      random2 = Math.floor(Math.random() * 52);
+    }
+    
+    const cardsDealt = this.state.cardsDealt.slice().concat(random1, random2)
+    this.setState({cardsDealt})
+
     const deck = this.state.CPU.slice().concat(
       { suit: this.state.suits[random1 % 4], number: this.state.values[random1 % 13] },
       { suit: this.state.suits[random2 % 4], number: this.state.values[random2 % 13] }
@@ -72,7 +92,7 @@ class Blackjack extends React.Component{
   }
 
   reset = () => {
-    this.setState({deck: [], CPU: [], score: 0, CPUscore: 0, hitDisable: false, cpuDisable: true})
+    this.setState({cardsDealt: [], deck: [], CPU: [], score: 0, CPUscore: 0, hitDisable: false, cpuDisable: true})
   }
 
   render(){
@@ -129,7 +149,7 @@ class Blackjack extends React.Component{
             <div> &nbsp;
               <Button variant="primary" disabled={this.state.hitDisable} onClick={this.deal}>Hit!</Button>{' '}
               <Button variant="danger" onClick={this.reset}>Start over!</Button>{' '}
-              <Button variant="info" disabled={this.state.cpuDisable} onClick={()=>{ this.playCPU(); this.playCPU(); }}>Play CPU!</Button>
+              <Button variant="info" disabled={this.state.cpuDisable} onClick={()=>{ this.playCPU()}}>Play CPU!</Button>
               <br/>
               &nbsp; Score: {this.state.score}
               <br/>

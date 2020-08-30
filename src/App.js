@@ -1,6 +1,7 @@
 import React from 'react';
 import Homepage from './Homepage';
 import Blackjack from './Blackjack';
+import War from './War';
 import Poker from './Poker';
 import TarunQuiz from './TarunQuiz';
 import Taboo from './Taboo';
@@ -22,6 +23,10 @@ class App extends React.Component {
 
           <Route exact path = "/blackjack">
             <Blackjack/>
+          </Route>
+
+          <Route exact path = "/war">
+            <War/>
           </Route>
 
           <Route exact path = "/poker">

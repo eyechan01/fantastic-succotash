@@ -54,10 +54,11 @@ class Homepage extends React.Component{
     <Nav className="mr-auto">
       <NavDropdown title="Card Games" id="basic-nav-dropdown">
         <NavDropdown.Item><Link to="/blackjack" class="nav-link active">1. Blackjack</Link></NavDropdown.Item>
-        <NavDropdown.Item><Link to="/poker" class="nav-link active">2. Poker</Link></NavDropdown.Item>
-        <NavDropdown.Item><Link to="/TarunQuiz" class="nav-link active">3. Tarun Quiz</Link></NavDropdown.Item>
-        <NavDropdown.Item><Link to="/taboo" class="nav-link active">4. Taboo</Link></NavDropdown.Item>
-        <NavDropdown.Item><Link to="/set" class="nav-link active">5. Set</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/war" class="nav-link active">2. War</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/poker" class="nav-link active">3. Poker</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/TarunQuiz" class="nav-link active">4. Tarun Quiz</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/taboo" class="nav-link active">5. Taboo</Link></NavDropdown.Item>
+        <NavDropdown.Item><Link to="/set" class="nav-link active">6. Set</Link></NavDropdown.Item>
       </NavDropdown>
     </Nav>
   </Navbar.Collapse>
